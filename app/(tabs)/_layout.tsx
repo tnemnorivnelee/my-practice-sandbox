@@ -25,7 +25,8 @@ export default function TabLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
-      }}>
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -57,6 +58,15 @@ export default function TabLayout() {
 
       {/* ⬇️ 이 줄을 추가하세요 ⬇️ */}
       <Tabs.Screen name="practice" options={{ title: '연습' }} />
+
+      {/* ⬇️ 여기에 새 탭 추가! ⬇️ */}
+      <Tabs.Screen
+        name="notifications" // ⭐️ 파일명(notifications.tsx)과 똑같아야 함!
+        options={{
+          title: '알림 테스트',
+          tabBarIcon: ({ color }) => <FontAwesome name="bell" size={28} color={color} />,
+        }}
+      />
     </Tabs>
   );
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "129561180948",
+    "project_id": "my-practice-sandbox-7c188",
+    "storage_bucket": "my-practice-sandbox-7c188.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129561180948:android:4e3dcf99e252995df72001",
+        "android_client_info": {
+          "package_name": "com.tnemn.mypracticesandbox"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_BYeTqBiUDeztkbKTjTpzAJV7uI3tz2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
