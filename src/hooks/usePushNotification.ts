@@ -2,6 +2,7 @@
 import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import { router } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Platform } from 'react-native';
 
@@ -71,18 +72,23 @@ export const usePushNotification = () => {
     // 3. 토큰 발급 실행
     registerForPushNotificationsAsync().then((token) => setExpoPushToken(token ?? ''));
 
-    // 4. 사용자가 알림을 "클릭(Tap)" 했을 때 실행되는 리스너
+    // 4. 사용자가 알림을 "클릭" 했을 때 실행되는 리스너
     responseListener.current = Notifications.addNotificationResponseReceivedListener((response) => {
       console.log('알림 클릭함!', response);
-      // ⭐️ 여기서 "채팅방 이동" 로직을 짭니다. (나중에)
-    });
 
-    return () => {
-      if (responseListener.current) {
-        // ✅ 최신 방식: 리스너 객체의 .remove()를 직접 호출합니다.
-        responseListener.current.remove();
+      // 1. 아까 Expo 도구에서 "Data" 칸에 넣은 JSON을 꺼냅니다.
+      const data = response.notification.request.content.data;
+
+      // 2. "type"이 "CHAT"이면 채팅방으로 이동!
+      if (data.type === 'CHAT' && data.roomId) {
+        // (주의: 실제로 이 경로의 파일이 있어야 에러가 안 납니다.
+        //  없다면 '/(tabs)/practice' 같은 존재하는 경로로 테스트해보세요)
+        console.log('채팅방으로 이동합니다:', data.roomId);
+
+        // router.push(`/party/chat/${data.roomId}`); // 실제 구현 시
+        router.push('/(tabs)/practice'); // 샌드박스 테스트용 (연습 탭으로 이동)
       }
-    };
+    });
   }, []);
 
   return {
